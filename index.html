@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>হাই-কোয়ালিটি ইউটিউব MP3 ও প্লেলিস্ট ডাউনলোডার</title>
-    <!-- Tailwind CSS for modern and clean UI -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
@@ -13,7 +12,6 @@
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between">
 
-    <!-- নেভিগেশন বার -->
     <nav class="bg-gray-900 shadow-md border-b border-gray-800 sticky top-0 z-50">
         <div class="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
             <div class="flex justify-between h-16 items-center">
@@ -21,20 +19,18 @@
                     <span class="text-2xl font-bold text-red-500 cursor-pointer">YT<span class="text-green-500">Pro</span></span>
                 </div>
                 <div class="text-xs sm:text-sm bg-gray-800 text-green-400 font-semibold px-3 py-1 rounded-full border border-green-500/20">
-                    🔊 320kbps Max Quality
+                    🔊 High Quality Audio
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- মেইন কন্টেইনার -->
     <main class="flex-grow flex items-center justify-center px-4 py-10">
         <div class="max-w-2xl w-full bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-800">
             
             <h1 class="text-2xl sm:text-3xl font-bold text-center mb-2">ইউটিউব মিউজিক ডাউনলোডার</h1>
-            <p class="text-gray-400 text-xs sm:text-sm text-center mb-6">কোনো কোয়ালিটি লস ছাড়াই অরিজিনাল সাউন্ডে ফ্রি ডাউনলোড করুন</p>
+            <p class="text-gray-400 text-xs sm:text-sm text-center mb-6">কোনো ভাঙা উইন্ডো ছাড়া সরাসরি এবং দ্রুত ডাউনলোড করুন</p>
 
-            <!-- অপশন বা ট্যাব বাটন (সিঙ্গেল গান বনাম প্লেলিস্ট) -->
             <div class="flex bg-gray-950 p-1.5 rounded-xl border border-gray-800 mb-6">
                 <button id="tab-single" onclick="switchTab('single')" class="flex-1 py-2.5 rounded-lg text-sm font-bold transition bg-red-600 text-white shadow-md">
                     🎵 ১টি গানের লিংক
@@ -44,51 +40,43 @@
                 </button>
             </div>
 
-            <!-- অপশন ১: সিঙ্গেল গান ডাউনলোডার এরিয়া -->
             <div id="single-section" class="space-y-4">
                 <div class="text-left">
                     <label class="block text-xs font-semibold text-gray-400 mb-1.5">ইউটিউব ভিডিওর লিংক দিন:</label>
                     <input type="text" id="single-url" placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-red-500 text-white text-sm placeholder-gray-600">
                 </div>
-                <button onclick="downloadSingle()" class="w-full bg-red-600 text-white py-3.5 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-600/10 text-sm sm:text-base">
-                    🚀 হাই-কোয়ালিটি MP3 তৈরি করুন
+                <button onclick="processSingle()" class="w-full bg-red-600 text-white py-3.5 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-600/10 text-sm sm:text-base">
+                    🚀 ডাউনলোড লিংক তৈরি করুন
                 </button>
             </div>
 
-            <!-- অপশন ২: প্লেলিস্ট ডাউনলোডার এরিয়া -->
             <div id="playlist-section" class="space-y-4 hidden">
                 <div class="text-left">
                     <label class="block text-xs font-semibold text-gray-400 mb-1.5">ইউটিউব প্লেলিস্টের লিংক দিন:</label>
                     <input type="text" id="playlist-url" placeholder="https://www.youtube.com/playlist?list=..." class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-green-500 text-white text-sm placeholder-gray-600">
                 </div>
-                <button onclick="downloadPlaylist()" class="w-full bg-green-600 text-white py-3.5 rounded-xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-600/10 text-sm sm:text-base">
-                    📂 পুরো প্লেলিস্টের গান লোড করুন
+                <button onclick="processPlaylist()" class="w-full bg-green-600 text-white py-3.5 rounded-xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-600/10 text-sm sm:text-base">
+                    📂 প্লেলিস্ট ডাউনলোড লিংক তৈরি করুন
                 </button>
             </div>
 
-            <!-- রেজাল্ট এবং ফ্রেম ডিসপ্লে বক্স -->
-            <div id="result-box" class="mt-8 pt-6 border-t border-gray-800 hidden">
-                <div id="loading-status" class="text-gray-400 flex flex-col items-center space-y-2 hidden">
-                    <div class="w-6 h-6 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-                    <p class="text-xs text-center">আপনার রিকোয়েস্টটি প্রসেস করা হচ্ছে। হাই-কোয়ালিটি অডিও কনভার্ট হতে কিছুটা সময় লাগতে পারে...</p>
-                </div>
-                
-                <!-- ডাউনলোড উইন্ডো এরিয়া -->
-                <div id="display-area" class="hidden">
-                    <p class="text-sm text-green-400 font-semibold text-center mb-3">✓ আপনার গান/প্লেলিস্ট ডাউনলোডের জন্য নিচে প্রস্তুত!</p>
-                    <iframe id="download-frame" class="w-full h-96 border-0 rounded-xl bg-gray-950 shadow-inner" src=""></iframe>
+            <div id="result-box" class="mt-8 pt-6 border-t border-gray-800 hidden text-center">
+                <div id="display-area">
+                    <p class="text-sm text-green-400 font-semibold mb-4">✓ আপনার ডাউনলোড লিংকটি তৈরি হয়েছে!</p>
+                    <a id="direct-download-btn" href="#" target="_blank" class="inline-flex items-center justify-center bg-emerald-500 text-gray-950 px-8 py-4 rounded-xl font-black text-lg hover:bg-emerald-400 transition transform hover:scale-105 shadow-xl shadow-emerald-500/20">
+                        ⬇️ এখনই MP3 ডাউনলোড করুন
+                    </a>
+                    <p class="text-xs text-gray-500 mt-3">ক্লিক করার পর নতুন ট্যাবে ডাউনলোডের অপশন চলে আসবে।</p>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- ফুটার -->
     <footer class="bg-gray-950 text-gray-600 py-4 border-t border-gray-900 text-center text-xs">
         <p>&copy; ২০২৬ YTPro মিউজিক গেটওয়ে।</p>
     </footer>
 
-    <!-- জাভাস্ক্রিপ্ট কন্ট্রোল -->
     <script>
         let currentMode = "single";
 
@@ -98,9 +86,7 @@
             const tabPlaylist = document.getElementById('tab-playlist');
             const singleSection = document.getElementById('single-section');
             const playlistSection = document.getElementById('playlist-section');
-            const resultBox = document.getElementById('result-box');
-
-            resultBox.classList.add('hidden');
+            document.getElementById('result-box').classList.add('hidden');
 
             if (mode === 'single') {
                 tabSingle.className = "flex-1 py-2.5 rounded-lg text-sm font-bold transition bg-red-600 text-white shadow-md";
@@ -115,22 +101,8 @@
             }
         }
 
-        function showLoading() {
-            document.getElementById('result-box').classList.remove('hidden');
-            document.getElementById('loading-status').classList.remove('hidden');
-            document.getElementById('display-area').classList.add('hidden');
-        }
-
-        function showResult(url) {
-            setTimeout(() => {
-                document.getElementById('loading-status').classList.add('hidden');
-                document.getElementById('display-area').classList.remove('hidden');
-                document.getElementById('download-frame').src = url;
-            }, 1500);
-        }
-
-        // ১) সিঙ্গেল গান ডাউনলোডের জন্য বিশ্বের সবচেয়ে পপুলার এবং রানিং উইজেট (YouTube-MP3 API)
-        function downloadSingle() {
+        // ১) সিঙ্গেল গান ডাউনলোডের নতুন ডিরেক্ট মেথড
+        function processSingle() {
             const url = document.getElementById('single-url').value.trim();
             if (!url) return alert('দয়া করে ইউটিউব গানের লিংকটি দিন!');
 
@@ -140,19 +112,21 @@
 
             if (match && match[2].length == 11) {
                 videoId = match[2];
-                showLoading();
-                // নতুন সচল হাই-কোয়ালিটি ৩২০কেবিপিএস কনভার্টার গেটওয়ে লিঙ্ক
-                const downloadUrl = `https://youtube-mp36.p.rapidapi.com/dl?id=${videoId}`;
-                // যেহেতু র‌্যাপিড এপিআই ফ্রেমের জন্য এই গেটওয়েটি অনেক নিরাপদ এবং সচল:
-                const fallbackUrl = `https://button.yt2mp3.cc/?v=${videoId}&f=mp3&bg=0f172a&b_color=ef4444&t_color=ffffff`;
-                showResult(fallbackUrl);
+                
+                // এবার আমরা কোনো ফাটল ফ্রেম লোড করবো না, সরাসরি ওয়ার্ল্ড-পপুলার ডিরেক্ট কনভার্টার লিংকে পাঠিয়ে দেবো
+                const directUrl = `https://9xbuddy.org/process?url=https://www.youtube.com/watch?v=${videoId}`;
+                
+                document.getElementById('result-box').classList.remove('hidden');
+                const btn = document.getElementById('direct-download-btn');
+                btn.href = directUrl;
+                btn.className = "inline-flex items-center justify-center bg-red-600 text-white px-8 py-4 rounded-xl font-black text-lg hover:bg-red-500 transition transform hover:scale-105 shadow-xl";
             } else {
                 alert('ভুল লিংক! দয়া করে সঠিক ইউটিউব লিংক দিন।');
             }
         }
 
-        // ২) প্লেলিস্ট ডাউনলোডের নতুন সচল গেটওয়ে
-        function downloadPlaylist() {
+        // ২) প্লেলিস্ট ডাউনলোডের নতুন ডিরেক্ট মেথড
+        function processPlaylist() {
             const url = document.getElementById('playlist-url').value.trim();
             if (!url) return alert('দয়া করে ইউটিউব প্লেলিস্টের লিংকটি দিন!');
 
@@ -162,12 +136,15 @@
             }
 
             if (playlistId) {
-                showLoading();
-                // প্লেলিস্ট প্রসেস করার জন্য সর্বদা সচল অন-লাইন উইজেট গেটওয়ে
-                const playlistDownloadUrl = `https://playlist.yt2mp3.cc/?list=${playlistId}&bg=0f172a&b_color=22c55e&t_color=ffffff`;
-                showResult(playlistDownloadUrl);
+                // প্লেলিস্টের জন্য সরাসরি হাই-স্পিড মাল্টিপল ডাউনলোডার গেটওয়ে
+                const directPlaylistUrl = `https://9xbuddy.org/process?url=https://www.youtube.com/playlist?list=${playlistId}`;
+                
+                document.getElementById('result-box').classList.remove('hidden');
+                const btn = document.getElementById('direct-download-btn');
+                btn.href = directPlaylistUrl;
+                btn.className = "inline-flex items-center justify-center bg-green-600 text-white px-8 py-4 rounded-xl font-black text-lg hover:bg-green-500 transition transform hover:scale-105 shadow-xl";
             } else {
-                alert('সঠিক প্লেলিস্ট লিংক খুঁজে পাওয়া যায়নি! লিংকের ভেতর "list=" অংশটি থাকা জরুরি।');
+                alert('সঠিকে প্লেলিস্ট লিংক খুঁজে পাওয়া যায়নি!');
             }
         }
     </script>
