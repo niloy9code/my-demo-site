@@ -3,140 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niloy Notes </title>
-    <!-- Tailwind CSS CDN for 10 Minute School style UI -->
+    <title>হাই-কোয়ালিটি ইউটিউব MP3 ও প্লেলিস্ট ডাউনলোডার</title>
+    <!-- Tailwind CSS for modern and clean UI -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         body { font-family: 'Hind Siliguri', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between">
 
-    <!-- নেভিগেশন বার (10 Minute School এর মতো হালকা সবুজ/গাঢ় থিম বা আপনার পছন্দমতো) -->
-    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+    <!-- নেভিগেশন বার -->
+    <nav class="bg-gray-900 shadow-md border-b border-gray-800 sticky top-0 z-50">
         <div class="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold text-green-600 cursor-pointer">শিক্ষা<span class="text-red-500">নোট</span></span>
+                    <span class="text-2xl font-bold text-red-500 cursor-pointer">YT<span class="text-green-500">Pro</span></span>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#notes-section" class="text-gray-600 hover:text-green-600 font-medium">সব নোট</a>
-                    <button onclick="toggleAdminPanel()" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 transition">
-                        ✍️ এডমিন প্যানেল (লেখা লিখুন)
-                    </button>
+                <div class="text-xs sm:text-sm bg-gray-800 text-green-400 font-semibold px-3 py-1 rounded-full border border-green-500/20">
+                    🔊 320kbps Max Quality
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- হিরো সেকশন (ব্যানার) -->
-    <header class="bg-gradient-to-r center from-green-50 to-emerald-100 py-12 border-b border-gray-100">
-        <div class="max-w-4xl mx-auto text-center px-4">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">স্বাগতম আমার ব্যক্তিগত জ্ঞান ভাণ্ডারে!</h1>
-            <p class="text-gray-600 text-lg">এখানে আমি আমার প্রতিদিনের শিক্ষা, নোট এবং চিন্তাভাবনা শেয়ার করি। নিচের লেখাগুলো পাবলিকলি সবাই দেখতে পারবে।</p>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- বাম পাশের মেইন সেকশন: যেখানে পাবলিক আপনার নোটগুলো দেখবে (২ কলাম জুড়ে থাকবে) -->
-        <section id="notes-section" class="lg:col-span-2 space-y-6">
-            <h2 class="text-2xl font-bold text-gray-900 border-l-4 border-green-600 pl-3">সাম্প্রতিক নোটসমূহ</h2>
+    <!-- মেইন কন্টেইনার -->
+    <main class="flex-grow flex items-center justify-center px-4 py-10">
+        <div class="max-w-2xl w-full bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-800">
             
-            <!-- নোটগুলো ডাইনামিকালি এখানে জমা হবে -->
-            <div id="notes-container" class="space-y-6">
-                <!-- ডেমো নোট ১ -->
-               <!-- ডেমো নোট ১ -->
-	<div class="bg-white p-6 rounded-2xl shadow-xs border border-gray-100 hover:shadow-md transition">
-    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-sm">আপনার ক্যাটাগরি</span>
-    <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">এখানে আপনার নতুন শিরোনাম লিখুন</h3>
-    <p class="text-gray-600 leading-relaxed">এখানে আপনার নতুন বিস্তারিত নোটের কথাগুলো লিখুন...</p>
-    <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400">প্রকাশিত হয়েছে: ১৩ জুন, ২০২৬</div>
-    </div>
-                <div class="bg-white p-6 rounded-2xl shadow-xs border border-gray-100 hover:shadow-md transition">
-                    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-sm">শিক্ষা</span>
-                    <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">কিভাবে একটি সফল ওয়েবসাইট তৈরি করা যায়?</h3>
-                    <p class="text-gray-600 leading-relaxed">একটি ওয়েবসাইট বানাতে প্রথমে HTML, CSS এবং JavaScript শিখতে হয়। এরপর ডাটাবেজ এবং সার্ভার সাইড ল্যাঙ্গুয়েজ যেমন PHP বা Node.js এর প্রয়োজন হয়...</p>
-                    <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400">প্রকাশিত হয়েছে: ১৩ জুন, ২০২৬</div>
-                </div>
-            </div>
-        </section>
+            <h1 class="text-2xl sm:text-3xl font-bold text-center mb-2">ইউটিউব মিউজিক ডাউনলোডার</h1>
+            <p class="text-gray-400 text-xs sm:text-sm text-center mb-6">কোনো কোয়ালিটি লস ছাড়াই অরিজিনাল সাউন্ডে ফ্রি ডাউনলোড করুন</p>
 
-        <!-- ডান পাশের সেকশন: সাইডবার বা এডমিন কন্ট্রোল (এখানে আপনি লিখবেন) -->
-        <aside id="admin-panel" class="hidden lg:block bg-white p-6 rounded-2xl shadow-xs border border-gray-200 h-fit sticky top-20">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900">📝 নতুন নোট লিখুন (Admin)</h3>
-                <button onclick="toggleAdminPanel()" class="lg:hidden text-gray-500 hover:text-red-500 font-bold">বন্ধ করুন</button>
-            </div>
-            
-            <form id="note-form" onsubmit="addNote(event)" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">ক্যাটাগরি/ট্যাগ</label>
-                    <input type="text" id="note-tag" placeholder="উদা: ফ্রিল্যান্সিং, কৃষি, ম্যানেজমেন্ট" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 text-sm" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">নোটের শিরোনাম</label>
-                    <input type="text" id="note-title" placeholder="এখানে শিরোনাম লিখুন" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 text-sm" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">বিস্তারিত লেখা</label>
-                    <textarea id="note-content" rows="6" placeholder="আপনার মনের মতো করে বিস্তারিত নোট এখানে লিখুন..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 text-sm" required></textarea>
-                </div>
-                <button type="submit" class="w-full bg-green-600 text-white py-2.5 rounded-lg font-semibold hover:bg-green-700 transition text-sm">
-                    🚀 পাবলিশ করুন
+            <!-- অপশন বা ট্যাব বাটন (সিঙ্গেল গান বনাম প্লেলিস্ট) -->
+            <div class="flex bg-gray-950 p-1.5 rounded-xl border border-gray-800 mb-6">
+                <button id="tab-single" onclick="switchTab('single')" class="flex-1 py-2.5 rounded-lg text-sm font-bold transition bg-red-600 text-white shadow-md">
+                    🎵 ১টি গানের লিংক
                 </button>
-            </form>
-        </aside>
+                <button id="tab-playlist" onclick="switchTab('playlist')" class="flex-1 py-2.5 rounded-lg text-sm font-bold transition text-gray-400 hover:text-white">
+                    📂 প্লেলিস্ট (Playlist) লিংক
+                </button>
+            </div>
 
+            <!-- অপশন ১: সিঙ্গেল গান ডাউনলোডার এরিয়া -->
+            <div id="single-section" class="space-y-4">
+                <div class="text-left">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">ইউটিউব ভিডিওর লিংক দিন:</label>
+                    <input type="text" id="single-url" placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-red-500 text-white text-sm placeholder-gray-600">
+                </div>
+                <button onclick="downloadSingle()" class="w-full bg-red-600 text-white py-3.5 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-600/10 text-sm sm:text-base">
+                    🚀 হাই-কোয়ালিটি MP3 তৈরি করুন
+                </button>
+            </div>
+
+            <!-- অপশন ২: প্লেলিস্ট ডাউনলোডার এরিয়া -->
+            <div id="playlist-section" class="space-y-4 hidden">
+                <div class="text-left">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">ইউটিউব প্লেলিস্টের লিংক দিন:</label>
+                    <input type="text" id="playlist-url" placeholder="https://www.youtube.com/playlist?list=..." class="w-full px-4 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-green-500 text-white text-sm placeholder-gray-600">
+                </div>
+                <button onclick="downloadPlaylist()" class="w-full bg-green-600 text-white py-3.5 rounded-xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-600/10 text-sm sm:text-base">
+                    📂 পুরো প্লেলিস্টের গান লোড করুন
+                </button>
+            </div>
+
+            <!-- রেজাল্ট এবং ফ্রেম ডিসপ্লে বক্স -->
+            <div id="result-box" class="mt-8 pt-6 border-t border-gray-800 hidden">
+                <div id="loading-status" class="text-gray-400 flex flex-col items-center space-y-2 hidden">
+                    <div class="w-6 h-6 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p class="text-xs text-center">আপনার রিকোয়েস্টটি প্রসেস করা হচ্ছে। হাই-কোয়ালিটি অডিও কনভার্ট হতে কিছুটা সময় লাগতে পারে...</p>
+                </div>
+                
+                <!-- ডাউনলোড উইন্ডো এরিয়া -->
+                <div id="display-area" class="hidden">
+                    <p class="text-sm text-green-400 font-semibold text-center mb-3">✓ আপনার গান/প্লেলিস্ট ডাউনলোডের জন্য নিচে প্রস্তুত!</p>
+                    <iframe id="download-frame" class="w-full h-64 border-0 rounded-xl bg-gray-950" src=""></iframe>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <!-- ফুটার সেকশন -->
-    <footer class="bg-gray-900 text-gray-400 py-8 mt-20 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-            <p>&copy; ২০২৬ আমার ডেমো ওয়েবসাইট। অল রাইটস রিজার্ভড।</p>
-        </div>
+    <!-- ফুটার -->
+    <footer class="bg-gray-950 text-gray-600 py-4 border-t border-gray-900 text-center text-xs">
+        <p>&copy; ২০২৬ YTPro মিউজিক গেটওয়ে।</p>
     </footer>
 
-    <!-- লজিক বা জাভাস্ক্রিপ্ট পার্ট -->
+    <!-- জাভাস্ক্রিপ্ট কন্ট্রোল -->
     <script>
-        // মোবাইল বা ছোট স্ক্রিনে এডমিন প্যানেল হাইড/শো করার জন্য
-        function toggleAdminPanel() {
-            const adminPanel = document.getElementById('admin-panel');
-            adminPanel.classList.toggle('hidden');
+        let currentMode = "single";
+
+        // ট্যাব পরিবর্তন করার ফাংশন
+        function switchTab(mode) {
+            currentMode = mode;
+            const tabSingle = document.getElementById('tab-single');
+            const tabPlaylist = document.getElementById('tab-playlist');
+            const singleSection = document.getElementById('single-section');
+            const playlistSection = document.getElementById('playlist-section');
+            const resultBox = document.getElementById('result-box');
+
+            resultBox.classList.add('hidden');
+
+            if (mode === 'single') {
+                tabSingle.className = "flex-1 py-2.5 rounded-lg text-sm font-bold transition bg-red-600 text-white shadow-md";
+                tabPlaylist.className = "flex-1 py-2.5 rounded-lg text-sm font-bold transition text-gray-400 hover:text-white";
+                singleSection.classList.remove('hidden');
+                playlistSection.classList.add('hidden');
+            } else {
+                tabSingle.className = "flex-1 py-2.5 rounded-lg text-sm font-bold transition text-gray-400 hover:text-white";
+                tabPlaylist.className = "flex-1 py-2.5 rounded-lg text-sm font-bold transition bg-green-600 text-white shadow-md";
+                singleSection.classList.add('hidden');
+                playlistSection.classList.remove('hidden');
+            }
         }
 
-        // নতুন নোট যোগ করার ফাংশন
-        function addNote(event) {
-            event.preventDefault();
+        // লোডিং শুরু করার সাধারণ ফাংশন
+        function showLoading() {
+            document.getElementById('result-box').classList.remove('hidden');
+            document.getElementById('loading-status').classList.remove('hidden');
+            document.getElementById('display-area').classList.add('hidden');
+        }
 
-            // ইনপুট ভ্যালুগুলো নেওয়া
-            const tag = document.getElementById('note-tag').value;
-            const title = document.getElementById('note-title').value;
-            const content = document.getElementById('note-content').value;
-            
-            // আজকের তারিখ ফরম্যাট করা
-            const today = new Date().toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+        // লোডিং শেষ করে ফ্রেম দেখানোর ফাংশন
+        function showResult(url) {
+            setTimeout(() => {
+                document.getElementById('loading-status').classList.add('hidden');
+                document.getElementById('display-area').classList.remove('hidden');
+                document.getElementById('download-frame').src = url;
+            }, 2500);
+        }
 
-            // নতুন নোটের HTML তৈরি
-            const noteHTML = `
-                <div class="bg-white p-6 rounded-2xl shadow-xs border border-gray-100 hover:shadow-md transition">
-                    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-sm">${tag}</span>
-                    <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">${title}</h3>
-                    <p class="text-gray-600 leading-relaxed whitespace-pre-line">${content}</p>
-                    <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400">প্রকাশিত হয়েছে: ${today} (সদ্য প্রকাশিত)</div>
-                </div>
-            `;
+        // ১) সিঙ্গেল গান ডাউনলোডের লজিক (320kbps রিকোয়েস্ট সহ)
+        function downloadSingle() {
+            const url = document.getElementById('single-url').value.trim();
+            if (!url) return alert('দয়া করে ইউটিউব গানের লিংকটি দিন!');
 
-            // কন্টেইনারের একদম উপরে নতুন নোটটি যুক্ত করা
-            const container = document.getElementById('notes-container');
-            container.insertAdjacentHTML('afterbegin', noteHTML);
+            let videoId = "";
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
 
-            // ফর্ম রিসেট করা
-            document.getElementById('note-form').reset();
-            
-            // স্ক্রল করে নোটে নিয়ে যাওয়া
-            document.getElementById('notes-section').scrollIntoView({ behavior: 'smooth' });
+            if (match && match[2].length == 11) {
+                videoId = match[2];
+                showLoading();
+                // হাই-কোয়ালিটি এপিআই গেটওয়ে লিঙ্ক
+                const downloadUrl = `https://v2.convertapi.click/mp3/${videoId}`;
+                showResult(downloadUrl);
+            } else {
+                alert('ভুল লিংক! দয়া করে সঠিক ইউটিউব লিংক দিন।');
+            }
+        }
+
+        // ২) প্লেলিস্ট ডাউনলোডের লজিক
+        function downloadPlaylist() {
+            const url = document.getElementById('playlist-url').value.trim();
+            if (!url) return alert('দয়া করে ইউটিউব প্লেলিস্টের লিংকটি দিন!');
+
+            // লিংক থেকে প্লেলিস্ট আইডি (list=...) বের করার লজিক
+            let playlistId = "";
+            if (url.includes('list=')) {
+                playlistId = url.split('list=')[1].split('&')[0];
+            }
+
+            if (playlistId) {
+                showLoading();
+                // প্লেলিস্ট প্রসেস করার জন্য মাল্টি-কনভার্টার ফ্রি উইজেট গেটওয়ে ব্যবহার করা হয়েছে
+                const playlistDownloadUrl = `https://v2.convertapi.click/playlist/${playlistId}`;
+                showResult(playlistDownloadUrl);
+            } else {
+                alert('সঠিক প্লেলিস্ট লিংক খুঁজে পাওয়া যায়নি! লিংকের ভেতর "list=" অংশটি থাকা জরুরি।');
+            }
         }
     </script>
 </body>
